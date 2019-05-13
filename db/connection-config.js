@@ -1,5 +1,5 @@
 const url = require('url');
-const uri = '';
+const uri = process.env.MONGODB_URI || process.env.DEV_MONGODB_URI;
 
 if (!uri) {
     throw new Error('\033[31mYou need to provide the connection string. ' + 'You can open "db/connection-config.js" and export it or use the "setUri" command.\033[0m');
