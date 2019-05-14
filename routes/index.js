@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const axios = require('axios');
-
+const ArticlesModel = require('../db/models/Articles');
+//TODO: Continue with the Articles Const Line20
 
 
 /* GET home page. */
@@ -16,6 +17,7 @@ router.get('/', function(req, res, next) {
   }).then( response => {
     //console.log(data.data);
     let data = response.data.results;
+    const articles = new ArticlesModel()
    
 
     data.forEach(element => {

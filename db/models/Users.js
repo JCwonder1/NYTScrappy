@@ -12,7 +12,7 @@ if (mongoose.connection.readyState === 0)
 
 
 let UsersSchema = new Schema({
-    userName: {
+    username: {
         type: String, 
         required: true, 
         trim: true, 
