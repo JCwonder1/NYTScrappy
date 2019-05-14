@@ -4,15 +4,31 @@ const mongoose = require('mongoose');
 const names = fs.readdirSync(path.normalize(__dirname + '/models'));
 
 
+
 let models = {};
 
 if (mongoose.connection.readyState === 0) {
-    mongoose.connect(require('./connection-config.js')).then((res_db) => {
-        console.log('Mongoose connected:', require('./connection-config.js'));
+    mongoose
+      .connect(
+        require("./connection-config.js", {
+          dbName: "nytimesscrap",
+          useNewUrlParser: true,
+        })
+      )
+      .then(res_db => {
+        console.log(
+          "Mongoose connected:",
+          require("./connection-config.js")
+        );
         return res_db;
-    }).catch(err => {
-        console.error('Mongoose connect error', err, require('./connection-config.js'))
-    });
+      })
+      .catch(err => {
+        console.error(
+          "Mongoose connect error",
+          err,
+          require("./connection-config.js")
+        );
+      });
 }
 for (let index in names) {
     if (names.hasOwnProperty(index)) {
