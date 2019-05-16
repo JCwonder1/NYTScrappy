@@ -1,2 +1,50 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="jumbotron jumbotron-fluid">
+<div class="container text-center">
+    <h1 class="display-4">NY Times Scrap Breaking News</h1>
+  </div>
+</div>
+
+
+
+
+
+
+{{#if data}}
+<div class="container">
+{{#each data}}
+
+<div class="card mb-5 border-primary">
+    <div class="card-header text-white bg-primary">
+        {{title}}
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{desc}}</h5>
+        <a href="{{url}}" class="btn btn-success">Go to article</a>
+        <a href="#" class="float-right btn btn-danger" id="{{id}} comment">Comment</a>
+    </div>
+</div>
+
+{{/each}}
+</div>
+{{else}}
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+
+        </div>
+        <div class="col-4">
+            <div class="card mb-5 border-primary">
+                <div class="card-header text-white bg-primary">
+                    
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">No Content Scrapped</h5>
+                    <a href="/add" class="btn btn-success" id="scrap">Scrap NYT</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{/if}}
+

@@ -8,7 +8,7 @@ if (!uri) {
 }
 
 const uriObj = url.parse(uri);
-if (uriObj.protocol !== 'mongodb+srv:') {
+if (uriObj.protocol !== 'mongodb:') {
     throw new Error('Must be a mongodb URI')
 }
 if (!uriObj.host || !uriObj.path) {
