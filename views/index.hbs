@@ -1,45 +1,86 @@
 <div class="jumbotron jumbotron-fluid">
-<div class="container text-center">
-    <h1 class="display-4">NY Times Scrap Breaking News</h1>
-  </div>
+    <div class="container text-center">
+        <h1 class="display-4"></h1>
+        <br><br><br>
+    </div>
 </div>
-
-
-
-
 
 
 {{#if data}}
-<div class="container">
-{{#each data}}
-
-<div class="card mb-5 border-primary">
-    <div class="card-header text-white bg-primary">
-        {{title}}
+<div class="container" id="data">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New Comment</h5>
+                    
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger d-none" role="alert">
+                        Missing comment!
+                    </div>
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Comment:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="comment">Comment</button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="modal-titla">Comments</h5>
+                    <hr>
+                <div class="modal-comments">
+                   
+                </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="card-body">
-        <h5 class="card-title">{{desc}}</h5>
-        <a href="{{url}}" class="btn btn-success">Go to article</a>
-        <a href="#" class="float-right btn btn-danger" id="{{id}} comment">Comment</a>
-    </div>
-</div>
+    {{#each data}}
 
-{{/each}}
+    <div class="card mb-5 border-primary">
+        <div class="card-header text-white bg-primary">
+            {{title}}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{desc}}</h5>
+            <a href="{{url}}" class="btn btn-success">Go to article</a>
+            <button type="button" class="btn btn-danger float-right" data-toggle="modal" data-target="#exampleModal" data-whatever="{{id}}">Comment</button>
+        </div>
+    </div>
+
+    {{/each}}
 </div>
 {{else}}
-<div class="container">
+<div class="container no-scrap">
     <div class="row">
         <div class="col-4">
 
         </div>
         <div class="col-4">
             <div class="card mb-5 border-primary">
-                <div class="card-header text-white bg-primary">
-                    
+                <div class="card-header text-white bg-primary loading">
+                    <div class="alert alert-success d-none" role="alert">
+                        Loading new articles!
+                    </div>
+
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">No Content Scrapped</h5>
-                    <a href="/add" class="btn btn-success" id="scrap">Scrap NYT</a>
+                    <a href="#" class="btn btn-success" id="scrap">Scrap NYT</a>
                 </div>
             </div>
         </div>
@@ -47,4 +88,5 @@
 </div>
 
 {{/if}}
+
 
