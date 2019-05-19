@@ -4,7 +4,7 @@ $("#delete").on("click", () => {
     type: "DELETE",
     dataType: "json",
     complete: function(data) {
-      console.log(data);
+      
       window.location.href = "/";
     }
   });
@@ -26,7 +26,7 @@ $("#exampleModal").on("show.bs.modal", function(event) {
   $("#message-text").val("");
   const button = $(event.relatedTarget); // Button that triggered the modal
   const articleId = button.data("whatever"); // Extract info from data-* attributes
-  console.log(articleId);
+  
 
   getComments(articleId);
 
@@ -35,7 +35,7 @@ $("#exampleModal").on("show.bs.modal", function(event) {
   var modal = $("#data");
   modal.removeData("article");
   modal.data("article", articleId);
-  console.log(modal.data());
+  
 });
 
 $("#comment").on("click", event => {
@@ -43,20 +43,19 @@ $("#comment").on("click", event => {
   alert.addClass("d-none");
 
   const articleId = $("#data").data("article"); // Extract info from data-* attributes
-  console.log(articleId);
+  
     
   let name = $("#recipient-name").val() || "Guest";
   let comment = $("#message-text").val() || false;
 
   if (comment && name) {
-    console.log("DEBUG:", comment);
+    
     addComment(name, comment, articleId);
     $("#comment").attr("data-dismiss", "modal");
   } else {
     alert.removeClass("d-none");
   }
-  console.log(name);
-  console.log(comment);
+  
 });
 
 async function addComment(name, comment, article){
@@ -65,7 +64,7 @@ async function addComment(name, comment, article){
       type: "PUT",
       data: `name=${name}&comment=${comment}&article=${article}`,
       success: function(data) {
-         console.log(data);
+         data ? console.log('Success') : console.log('Error');
       }
     });
 }
@@ -82,9 +81,13 @@ async function getComments(articleId){
 
 async function populateComments(comments){
     let modalComment = $(".modal-comments");  
-
+    modalComment.empty();
     await comments.forEach(element => {
-        modalComment.append(`<p>${element.user}</p>`);
+        modalComment.append(
+          `<p><span class="text-primary font-weight-bold">${
+            element.user
+          }</span>: ${element.comment}</p> <hr>`
+        );
         
     });
 }

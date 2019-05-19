@@ -53,7 +53,7 @@ function fetchTimesDataFromApi(cb) {
   let url = `https://api.nytimes.com/svc/topstories/v2/home.json?api-key=${
     process.env.NYTIMES_API_KEY
   }`;
-  console.log(url);
+  
 
   axios({
     method: "get",
@@ -84,7 +84,7 @@ async function insertComment(collection, {name, comment, article}){
     article: mongoose.Types.ObjectId(article),
   }, (err, res) => {
     if (err) throw err;
-    console.log(res)});
+    });
 }
 
 async function findCommentByArticleId(collection, articleId){
